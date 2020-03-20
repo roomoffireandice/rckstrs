@@ -2,20 +2,24 @@ package com.sunil.hellonodejs.test;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore  
+    @JsonIgnore
     private int id;
-    
+
     @JsonIgnore
     private String title;
     private String content;
 
-    public Blog() {  }
+    public Blog() {
+    }
 
     public Blog(String title, String content) {
         this.setTitle(title);
