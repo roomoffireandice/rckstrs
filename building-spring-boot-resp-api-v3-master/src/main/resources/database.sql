@@ -5,3 +5,5 @@ CREATE TABLE blog (
 title VARCHAR(500)NOT NULL,
 content VARCHAR(5000)NOT NULL
 );
+
+INSERT INTO restapi.blog (title,content) values("Message","Hello ​NodeJS ​World");
