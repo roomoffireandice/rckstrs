@@ -9,3 +9,4 @@ content VARCHAR(5000)NOT NULL
 INSERT INTO restapi.blog (title,content) values("Message","HelloNodeJSWorld");
 
 commit;
+
