@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          env:
+          - name: MYSQL_DATABASE
+            value: 'restapi'
+          - name: MYSQL_USER
+            value: 'root'
+          - name: MYSQL_PASSWORD
+            value: 'Newuser@123'
+          - name: MYSQL_ROOT_PASSWORD
+            value: 'Newuser@123'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqlsvc
+spec:
+  selector:
+    app: mysql
+  type: ClusterIP
+  ports:
+    - port: 3306

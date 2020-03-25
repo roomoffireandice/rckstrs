@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellonodejs-deployment
+spec:
+  minReadySeconds: 10
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-node-k8s
+  strategy:
+    rollingUpdate:
+      maxSurge: 35%
+      maxUnavailable: 30%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hello-node-k8s
+    spec:
+      containers:
+      - name: hello-node-k8s
+        image: sunilkumardasu/hellonodejs:$BUILD_NUMBER
+        command: [sh, -c, "sleep 1000"]
+        args: [ "while true; do sleep 30; done;" ]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  hello-node-k8s
+spec:
+  selector:
+    app:  hello-node-k8s
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  8080
+    nodePort: 30001
+    protocol: TCP          
