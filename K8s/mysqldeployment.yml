@@ -1,35 +1,53 @@
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-deploy
 spec:
   minReadySeconds: 10
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: db
   template:
     metadata:
       labels:
-        app: mysql
+        app: db
     spec:
       containers:
         - name: mysql
-          image: mysql:5.6
-          command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
+          image: sunilkumardasu/mysql
+          command: ["/bin/bash", "-ce", "tail -f /dev/null"]
           ports:
-          - containerPort: 3306
-            protocol: TCP
+            - containerPort: 3306
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysqlvolume
           env:
           - name: MYSQL_DATABASE
-            value: 'restapi'
+            value: 'test'
           - name: MYSQL_USER
             value: 'root'
           - name: MYSQL_PASSWORD
             value: 'Newuser@123'
           - name: MYSQL_ROOT_PASSWORD
             value: 'Newuser@123'
+    volumes:
+      - name: mysqlvolume
+        persistantvolumeClaim:
+          claimName: pvc-demo
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +55,10 @@ metadata:
   name: mysqlsvc
 spec:
   selector:
-    app: mysql
+    app: db
   type: ClusterIP
   ports:
-    - port: 3306
+    - name: mysql
+      targetPort: 3306
+      port: 3306
+  
