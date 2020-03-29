@@ -36,18 +36,19 @@ spec:
             - mountPath: /var/lib/mysql
               name: mysqlvolume
           env:
-          - name: MYSQL_DATABASE
-            value: 'test'
-          - name: MYSQL_USER
-            value: 'root'
-          - name: MYSQL_PASSWORD
-            value: 'Newuser@123'
-          - name: MYSQL_ROOT_PASSWORD
-            value: 'Newuser@123'
-    volumes:
+            - name: MYSQL_DATABASE
+              value: 'test'
+            - name: MYSQL_USER
+              value: 'root'
+            - name: MYSQL_PASSWORD
+              value: 'Newuser@123'
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'Newuser@123'
+      volumes:
       - name: mysqlvolume
-        persistantvolumeClaim:
+        persistentVolumeClaim:
           claimName: pvc-demo
+
 ---
 apiVersion: v1
 kind: Service
@@ -61,4 +62,3 @@ spec:
     - name: mysql
       targetPort: 3306
       port: 3306
-  
