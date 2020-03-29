@@ -1,8 +1,7 @@
-
-```
 Spring Boot on Docker connecting to MySQL Docker container
 
 * Use MySQL Image published by Docker Hub (https://hub.docker.com/_/mysql/) Command to run the mysql container.
+
 ```
 docker run -d -p 3306:3306 --name=mysql --env="MYSQL_ROOT_PASSWORD=Newuser@123" --env="MYSQL_PASSWORD=Newuser@123" --env="MYSQL_DATABASE=test" mysql:5.6
 
@@ -21,6 +20,7 @@ ENTRYPOINT ["java","-jar","app.jar"]
 
 ```
 * Now build the image and push the docker image to docker hub
+
 ```
 docker build -t sunilkumardasu/hellonodejs:14 <directory_path>
 docker push sunilkumardasu/hellonodejs:14
