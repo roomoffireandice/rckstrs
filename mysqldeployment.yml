@@ -28,7 +28,7 @@ spec:
       containers:
         - name: mysql
           image: sunilkumardasu/mysql
-          command: ["/bin/bash", "-ce", "tail -f /dev/null"]
+          command: ["/bin/sh", "-ce", "tail -f /dev/null"]
           ports:
             - containerPort: 3306
               protocol: TCP
