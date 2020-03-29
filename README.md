@@ -6,7 +6,8 @@ Accessing the Application using Docker Containers:
 I have two docker containers running with Spring boot java Application and MqSql database. In order to access the Application I followed below steps.
 
 ```
-* Below are the steps to Create MQSQL Docker image 
+  Below are the steps to Create MQSQL Docker image
+  ------------------------------------------------ 
 
         1) Taken MQSQL base image from Docker Hub Registry (https://hub.docker.com/_/mysql/)
         2) Created the container by passing environment variables and base image
