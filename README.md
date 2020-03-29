@@ -250,8 +250,7 @@ Jenkinsfile:
 ------------
 * Following Jenkins file would clone the Dockerfile and SpringRest-1.0-SNAPSHOT.jar file from the git repository and then
   dockerize (create the  image) and then push to docker hub repository.
-  Later this jenkins file would call above mysqldeployment.yml and hellodeployment.yaml file. This yml files will create pods and service.
-  Using loadbalancer we can access deployed application "http://<LoadbalancerIp>:<<port>>"
+  Later this jenkins file would call above mysqldeployment.yml and hellodeployment.yaml file. This yaml files will create pods and service.
 
 ```
     pipeline
@@ -351,7 +350,7 @@ Jenkinsfile:
   }
 ```
 
-* In order to access above deployed Springboot micro service, we need to use this URL "http://<LoadbalancerIp>:<<port>>" in your browser, you should be able to see as below 
+* In order to access above deployed Springboot micro service, we need to use this URL (htts://loadbalancer_ip:8080/blog) in your browser, you should be able to see as below 
 
 ```
 {"Message":"HelloNodeJSWorld"}
