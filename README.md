@@ -35,7 +35,7 @@ Setting up Springboot Application to invoke Above MYSQL database:
 ----------------------------------------------------------------
 
 ```
-     1) In the Springboot Java Application, I have used the same container name "mysqlsvc" in the application.properties file.                 spring.datasource.url=jdbc:mysql://mysqlsvc:3306/test
+     1) In the Springboot Java Application, I have used the same container name "mysqlsvc" in the application.properties file.       spring.datasource.url=jdbc:mysql://mysqlsvc:3306/test
 
      2) Using maven, I had compiled code and created the Springboot artifact.
      3) Created below Dockerfile for Springboot Java Application 
